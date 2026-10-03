@@ -167,17 +167,17 @@ export default function SummarizePage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-[#090d16] text-slate-900 dark:text-slate-100 transition-colors duration-300">
       <Header />
 
       <main className="flex-1 py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Workspace Title */}
           <div className="max-w-2xl mx-auto text-center mb-10">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
               Make your text easier to understand.
             </h1>
-            <p className="text-sm sm:text-base text-slate-500 mt-2.5">
+            <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 mt-2.5">
               Paste your content below and let NoteCraft extract the essentials.
             </p>
           </div>
@@ -185,23 +185,23 @@ export default function SummarizePage() {
           {/* Two-Column Responsive Studio */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             {/* LEFT: Input Area */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm flex flex-col h-full overflow-hidden">
+            <div className="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-sm flex flex-col h-full overflow-hidden transition-colors">
               {/* Header Toolbar */}
-              <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-                  <FileText className="w-3.5 h-3.5 text-blue-600" />
+              <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800/80 flex items-center justify-between bg-slate-50/60 dark:bg-slate-800/40">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2">
+                  <FileText className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                   <span>Input Text</span>
                 </span>
 
                 {/* Sample Selector */}
                 <div className="flex items-center gap-1.5 text-xs">
-                  <span className="text-slate-400 hidden sm:inline">Try sample:</span>
+                  <span className="text-slate-400 dark:text-slate-500 hidden sm:inline">Try sample:</span>
                   {SAMPLE_TOPICS.map((topic) => (
                     <button
                       key={topic.id}
                       type="button"
                       onClick={() => handleSelectSample(topic)}
-                      className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-slate-300 text-xs font-medium transition-colors cursor-pointer"
+                      className="px-2.5 py-1 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-slate-300 dark:hover:border-slate-600 text-xs font-medium transition-colors cursor-pointer"
                     >
                       {topic.title.split(" ")[0]}
                     </button>
@@ -222,34 +222,34 @@ export default function SummarizePage() {
                   disabled={isLoading}
                   placeholder="Paste your text here..."
                   rows={13}
-                  className="w-full flex-1 min-h-[300px] p-4 rounded-xl border border-slate-200 bg-slate-50/30 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base leading-relaxed resize-none transition-all"
+                  className="w-full flex-1 min-h-[300px] p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/50 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base leading-relaxed resize-none transition-all"
                 />
 
                 {/* Live Count Bar */}
-                <div className="mt-3 flex items-center justify-between text-xs text-slate-400">
+                <div className="mt-3 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500">
                   <div className="flex items-center gap-3">
                     <span>
-                      Words: <strong className="text-slate-700">{wordCount}</strong>
+                      Words: <strong className="text-slate-700 dark:text-slate-300">{wordCount}</strong>
                     </span>
                     <span>&bull;</span>
                     <span>
-                      Characters: <strong className="text-slate-700">{charCount}</strong>
+                      Characters: <strong className="text-slate-700 dark:text-slate-300">{charCount}</strong>
                     </span>
                   </div>
 
-                  <span className="hidden sm:inline font-mono text-[11px] text-slate-400">
+                  <span className="hidden sm:inline font-mono text-[11px] text-slate-400 dark:text-slate-500">
                     Ctrl + Enter to run
                   </span>
                 </div>
               </div>
 
               {/* Action Bar */}
-              <div className="px-5 py-4 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between gap-3">
+              <div className="px-5 py-4 bg-slate-50/70 dark:bg-slate-800/40 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-3">
                 <button
                   type="button"
                   onClick={handleClear}
                   disabled={isLoading || (!inputText && wordCount === 0)}
-                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors disabled:opacity-30 cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors disabled:opacity-30 cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Clear</span>
@@ -261,8 +261,8 @@ export default function SummarizePage() {
                   disabled={isLoading || wordCount < 5}
                   className={`relative inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm tracking-wide text-white transition-all duration-200 cursor-pointer shadow-sm ${
                     isLoading || wordCount < 5
-                      ? "bg-slate-300 text-slate-500 cursor-not-allowed shadow-none"
-                      : "bg-slate-900 hover:bg-blue-600 active:scale-[0.98] shadow-md shadow-slate-900/10"
+                      ? "bg-slate-300 dark:bg-slate-800 text-slate-500 dark:text-slate-500 cursor-not-allowed shadow-none"
+                      : "bg-slate-900 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500 active:scale-[0.98] shadow-md shadow-slate-900/10 dark:shadow-blue-600/20"
                   }`}
                 >
                   {isLoading ? (
@@ -272,7 +272,7 @@ export default function SummarizePage() {
                     </span>
                   ) : (
                     <>
-                      <Sparkles className="w-4 h-4 text-blue-300" />
+                      <Sparkles className="w-4 h-4 text-blue-300 dark:text-white" />
                       <span>Generate Summary</span>
                     </>
                   )}
@@ -283,31 +283,73 @@ export default function SummarizePage() {
             {/* RIGHT: Results Area */}
             <div className="flex flex-col min-h-[460px]">
               {isLoading ? (
-                /* Lightweight Progress State */
-                <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-8 flex flex-col items-center justify-center text-center min-h-[460px]">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5 animate-pulse">
-                    <Sparkles className="w-6 h-6 animate-spin [animation-duration:6s]" />
+                /* High-Tech AI Scanning Beam & Neural Progress State */
+                <div className="bg-white dark:bg-slate-900/90 rounded-2xl border border-blue-100 dark:border-blue-900/40 shadow-xl shadow-blue-500/5 p-8 flex flex-col items-center justify-center text-center min-h-[460px] relative overflow-hidden transition-colors">
+                  {/* Laser Scanning Beam traveling down */}
+                  <div className="animate-scan-beam z-10 pointer-events-none" />
+
+                  {/* Animated Neural Core Orb */}
+                  <div className="relative mb-6">
+                    {/* Outer rotating gradient ring */}
+                    <div className="w-20 h-20 rounded-full border-2 border-dashed border-blue-500/30 dark:border-blue-400/40 animate-spin-slow flex items-center justify-center" />
+                    {/* Inner glowing pulse core */}
+                    <div className="absolute inset-2 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/30 animate-pulse">
+                      <Sparkles className="w-7 h-7 text-white animate-spin [animation-duration:8s]" />
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-1">
+
+                  {/* Active Step Indicator Pill */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-3">
+                    <span className="flex h-2 w-2 relative">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600 dark:bg-blue-400"></span>
+                    </span>
+                    <span>Step {progressIndex + 1} of 4</span>
+                  </div>
+
+                  {/* Step Title */}
+                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white mb-2 tracking-tight transition-all duration-300">
                     {progressMessages[progressIndex]}
                   </h3>
-                  <p className="text-xs text-slate-500 max-w-xs">
-                    NoteCraft is reading your text and extracting essential takeaways.
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm mb-6 leading-relaxed">
+                    NoteCraft’s Python transformer model is digesting sentences, isolating key arguments, and calculating reduction metrics.
                   </p>
-                  <div className="w-48 h-1 bg-slate-100 rounded-full mt-6 overflow-hidden">
-                    <div className="h-full bg-blue-600 animate-shimmer" />
+
+                  {/* High-Tech Shimmering Progress Bar */}
+                  <div className="w-64 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden relative shadow-inner">
+                    <div
+                      className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-400 transition-all duration-300"
+                      style={{ width: `${(progressIndex + 1) * 25}%` }}
+                    />
+                    <div className="absolute inset-0 animate-shimmer" />
+                  </div>
+
+                  {/* Mini Step Nodes */}
+                  <div className="flex items-center gap-2 mt-6">
+                    {progressMessages.map((msg, idx) => (
+                      <span
+                        key={idx}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          idx === progressIndex
+                            ? "w-8 bg-blue-600 dark:bg-blue-400"
+                            : idx < progressIndex
+                            ? "w-3 bg-blue-300 dark:bg-blue-800"
+                            : "w-3 bg-slate-200 dark:bg-slate-800"
+                        }`}
+                      />
+                    ))}
                   </div>
                 </div>
               ) : error ? (
                 /* Polished Error State */
-                <div className="bg-red-50/70 rounded-2xl border border-red-200/80 p-8 flex flex-col items-center justify-center text-center min-h-[460px]">
-                  <div className="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-4">
+                <div className="bg-red-50/70 dark:bg-red-950/20 rounded-2xl border border-red-200/80 dark:border-red-900/50 p-8 flex flex-col items-center justify-center text-center min-h-[460px]">
+                  <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 flex items-center justify-center mb-4">
                     <AlertCircle className="w-6 h-6" />
                   </div>
-                  <h3 className="text-base font-bold text-red-950 mb-1">
+                  <h3 className="text-base font-bold text-red-950 dark:text-red-200 mb-1">
                     Notice
                   </h3>
-                  <p className="text-xs sm:text-sm text-red-800 max-w-sm mb-6 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-red-800 dark:text-red-300 max-w-sm mb-6 leading-relaxed">
                     {error}
                   </p>
                   <button
@@ -322,9 +364,9 @@ export default function SummarizePage() {
                 /* Generated Notes Results */
                 <div className="space-y-6 animate-in fade-in duration-300">
                   {/* SECTION 1: YOUR SUMMARY */}
-                  <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
-                    <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                  <div className="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-sm overflow-hidden transition-colors">
+                    <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800/80 flex items-center justify-between bg-slate-50/60 dark:bg-slate-800/40">
+                      <span className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
                         YOUR SUMMARY
                       </span>
                       <div className="flex items-center gap-2">
@@ -335,7 +377,7 @@ export default function SummarizePage() {
                             className={`p-1.5 rounded-lg border text-xs transition-colors cursor-pointer ${
                               isSpeaking
                                 ? "bg-blue-600 text-white border-blue-600"
-                                : "bg-white text-slate-600 hover:text-blue-600 border-slate-200"
+                                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 border-slate-200 dark:border-slate-700"
                             }`}
                             title={isSpeaking ? "Stop audio" : "Listen aloud"}
                           >
@@ -349,16 +391,16 @@ export default function SummarizePage() {
                         <button
                           type="button"
                           onClick={handleCopySummary}
-                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:text-blue-600 text-xs font-semibold transition-colors cursor-pointer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 text-xs font-semibold transition-colors cursor-pointer"
                         >
                           {copiedSummary ? (
                             <>
-                              <Check className="w-3.5 h-3.5 text-emerald-600" />
-                              <span className="text-emerald-700 font-bold">Copied</span>
+                              <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                              <span className="text-emerald-700 dark:text-emerald-400 font-bold">Copied</span>
                             </>
                           ) : (
                             <>
-                              <Copy className="w-3.5 h-3.5 text-slate-400" />
+                              <Copy className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                               <span>Copy Summary</span>
                             </>
                           )}
@@ -366,31 +408,31 @@ export default function SummarizePage() {
                       </div>
                     </div>
                     <div className="p-5 sm:p-6">
-                      <p className="text-slate-800 text-sm sm:text-base leading-relaxed">
+                      <p className="text-slate-800 dark:text-slate-200 text-sm sm:text-base leading-relaxed">
                         {results.summary}
                       </p>
                     </div>
                   </div>
 
                   {/* SECTION 2: KEY IDEAS */}
-                  <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
-                    <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                  <div className="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-sm overflow-hidden transition-colors">
+                    <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800/80 flex items-center justify-between bg-slate-50/60 dark:bg-slate-800/40">
+                      <span className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
                         KEY IDEAS
                       </span>
                       <button
                         type="button"
                         onClick={handleCopyKeyIdeas}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:text-blue-600 text-xs font-semibold transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 text-xs font-semibold transition-colors cursor-pointer"
                       >
                         {copiedKeyIdeas ? (
                           <>
-                            <Check className="w-3.5 h-3.5 text-emerald-600" />
-                            <span className="text-emerald-700 font-bold">Copied</span>
+                            <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                            <span className="text-emerald-700 dark:text-emerald-400 font-bold">Copied</span>
                           </>
                         ) : (
                           <>
-                            <Copy className="w-3.5 h-3.5 text-slate-400" />
+                            <Copy className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                             <span>Copy Key Ideas</span>
                           </>
                         )}
@@ -400,15 +442,15 @@ export default function SummarizePage() {
                       {results.key_points.map((point, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/70 border border-slate-100/90"
+                          className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-100/90 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
                           style={{
                             animationDelay: `${idx * 100}ms`,
                           }}
                         >
-                          <span className="w-5 h-5 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                          <span className="w-5 h-5 rounded-full bg-slate-900 dark:bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
                             {idx + 1}
                           </span>
-                          <p className="text-slate-800 text-sm leading-relaxed">
+                          <p className="text-slate-800 dark:text-slate-200 text-sm leading-relaxed">
                             {point}
                           </p>
                         </div>
@@ -417,56 +459,56 @@ export default function SummarizePage() {
                   </div>
 
                   {/* SECTION 3: TEXT REDUCTION */}
-                  <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-6">
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-800 pb-3 mb-4 border-b border-slate-100 flex items-center justify-between">
+                  <div className="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-sm p-5 sm:p-6 transition-colors">
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 pb-3 mb-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
                       <span>TEXT REDUCTION</span>
-                      <span className="text-[11px] font-mono text-slate-400 font-normal">
+                      <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500 font-normal">
                         Verified by Python Engine
                       </span>
                     </div>
 
                     <div className="grid grid-cols-3 gap-3 text-center">
-                      <div className="p-3 sm:p-4 rounded-xl bg-slate-50 border border-slate-100">
-                        <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                      <div className="p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                        <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1">
                           ORIGINAL
                         </span>
-                        <div className="text-xl sm:text-2xl font-extrabold text-slate-900">
+                        <div className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
                           <AnimatedCounter target={results.original_word_count} />
                         </div>
-                        <span className="text-[11px] text-slate-400">words</span>
+                        <span className="text-[11px] text-slate-400 dark:text-slate-500">words</span>
                       </div>
 
-                      <div className="p-3 sm:p-4 rounded-xl bg-slate-50 border border-slate-100">
-                        <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                      <div className="p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                        <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1">
                           SUMMARY
                         </span>
-                        <div className="text-xl sm:text-2xl font-extrabold text-blue-600">
+                        <div className="text-xl sm:text-2xl font-extrabold text-blue-600 dark:text-blue-400">
                           <AnimatedCounter target={results.summary_word_count} />
                         </div>
-                        <span className="text-[11px] text-slate-400">words</span>
+                        <span className="text-[11px] text-slate-400 dark:text-slate-500">words</span>
                       </div>
 
-                      <div className="p-3 sm:p-4 rounded-xl bg-emerald-50/60 border border-emerald-100">
-                        <span className="block text-[11px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
+                      <div className="p-3 sm:p-4 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-800/60">
+                        <span className="block text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-1">
                           REDUCED
                         </span>
-                        <div className="text-xl sm:text-2xl font-extrabold text-emerald-700">
+                        <div className="text-xl sm:text-2xl font-extrabold text-emerald-700 dark:text-emerald-400">
                           <AnimatedCounter
                             target={results.reduction_percentage}
                             decimals={1}
                             suffix="%"
                           />
                         </div>
-                        <span className="text-[11px] text-emerald-600 font-semibold">shorter</span>
+                        <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">shorter</span>
                       </div>
                     </div>
 
                     {/* Result Footer Toolbar */}
-                    <div className="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+                    <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
                       <button
                         type="button"
                         onClick={handleClear}
-                        className="text-slate-500 hover:text-slate-900 font-medium cursor-pointer"
+                        className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium cursor-pointer transition-colors"
                       >
                         Start Over
                       </button>
@@ -475,7 +517,7 @@ export default function SummarizePage() {
                         <button
                           type="button"
                           onClick={handleDownloadNotes}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-100 font-semibold cursor-pointer transition-colors"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-750 font-semibold cursor-pointer transition-colors"
                         >
                           <Download className="w-3.5 h-3.5" />
                           <span>Download Notes</span>
@@ -486,14 +528,14 @@ export default function SummarizePage() {
                 </div>
               ) : (
                 /* Initial Idle State */
-                <div className="bg-slate-50/50 rounded-2xl border-2 border-dashed border-slate-200 p-8 sm:p-12 flex flex-col items-center justify-center text-center min-h-[460px]">
-                  <div className="w-12 h-12 rounded-xl bg-white text-slate-400 border border-slate-200 flex items-center justify-center mb-3.5 shadow-2xs">
-                    <BookOpen className="w-6 h-6 text-slate-400" />
+                <div className="bg-slate-50/50 dark:bg-slate-900/30 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 p-8 sm:p-12 flex flex-col items-center justify-center text-center min-h-[460px] transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-white dark:bg-slate-800 text-slate-400 border border-slate-200 dark:border-slate-700 flex items-center justify-center mb-3.5 shadow-2xs">
+                    <BookOpen className="w-6 h-6 text-slate-400 dark:text-slate-500" />
                   </div>
-                  <h3 className="text-base font-bold text-slate-800 mb-1">
+                  <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-1">
                     Your notes will appear here.
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 max-w-xs leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xs leading-relaxed">
                     Paste content into the box on the left, then click <strong>Generate Summary</strong> to condense it.
                   </p>
                 </div>
@@ -507,3 +549,4 @@ export default function SummarizePage() {
     </div>
   );
 }
+
