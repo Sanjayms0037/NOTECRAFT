@@ -1,0 +1,53 @@
+[
+  {
+    "test_case": "TC-01",
+    "topic": "Artificial Intelligence in Education",
+    "original_text": "Artificial Intelligence is rapidly reshaping modern education by providing personalized learning pathways that adapt to individual student paces, strengths, and weaknesses. Intelligent tutoring systems analyze patterns in student responses, delivering customized hints and instructional remediation in real time. Beyond individual instruction, generative AI tools assist educators in drafting curricula, automating administrative assessments, and identifying early indicators of academic struggle through predictive learning analytics. However, the integration of AI in academic environments also raises critical dilemmas regarding algorithmic bias, digital divide disparities, plagiarism detection, and the potential erosion of critical thinking skills. To maximize the pedagogical benefits while mitigating ethical hazards, educational institutions must develop comprehensive digital literacy frameworks, transparent data governance policies, and hybrid learning models that preserve the essential mentorship role of human teachers.",
+    "original_word_count": 125,
+    "generated_summary": "Artificial Intelligence is rapidly reshaping modern education by providing personalized learning pathways that adapt to individual student paces, strengths, and weaknesses. To maximize the pedagogical benefits while mitigating ethical hazards, educational institutions must develop comprehensive digital literacy frameworks, transparent data governance policies, and hybrid learning models that preserve the essential mentorship role of human teachers.",
+    "summary_word_count": 55,
+    "reduction_percentage": 56.0,
+    "key_points": [
+      "Artificial Intelligence is rapidly reshaping modern education by providing personalized learning pathways that adapt to individual student paces, strengths, and weaknesses.",
+      "Beyond individual instruction, generative AI tools assist educators in drafting curricula, automating administrative assessments, and identifying early indicators of academic struggle through predictive learning analytics.",
+      "However, the integration of AI in academic environments also raises critical dilemmas regarding algorithmic bias, digital divide disparities, plagiarism detection, and the potential erosion of critical thinking skills.",
+      "To maximize the pedagogical benefits while mitigating ethical hazards, educational institutions must develop comprehensive digital literacy frameworks, transparent data governance policies, and hybrid learning models that preserve the essential mentorship role of human teachers."
+    ],
+    "model": "facebook/bart-large-cnn (Python Transformers Engine)",
+    "latency_seconds": 3.317
+  },
+  {
+    "test_case": "TC-02",
+    "topic": "Climate Change",
+    "original_text": "Climate change represents one of the most urgent global challenges of the twenty-first century, driven primarily by anthropogenic greenhouse gas emissions from fossil fuel combustion, deforestation, and industrial agriculture. As atmospheric concentrations of carbon dioxide and methane reach unprecedented levels, the Earth's climate system undergoes profound destabilization, resulting in rising average temperatures, ocean acidification, and accelerated glacial retreat. These environmental disruptions intensify the frequency and severity of extreme weather events, including prolonged megadroughts, devastating wildfires, and catastrophic tropical storms. The socioeconomic consequences are acute, threatening agricultural food security, displacing vulnerable coastal populations, and straining international economic systems. Mitigating the worst impacts requires an aggressive global transition toward renewable energy sources, widespread adoption of sustainable circular economy practices, nature-based carbon sequestration, and binding international climate agreements.",
+    "original_word_count": 125,
+    "generated_summary": "Climate change represents one of the most urgent global challenges of the twenty-first century, driven primarily by anthropogenic greenhouse gas emissions from fossil fuel combustion, deforestation, and industrial agriculture. Mitigating the worst impacts requires an aggressive global transition toward renewable energy sources, widespread adoption of sustainable circular economy practices, nature-based carbon sequestration, and binding international climate agreements.",
+    "summary_word_count": 57,
+    "reduction_percentage": 54.4,
+    "key_points": [
+      "Climate change represents one of the most urgent global challenges of the twenty-first century, driven primarily by anthropogenic greenhouse gas emissions from fossil fuel combustion, deforestation, and industrial agriculture.",
+      "As atmospheric concentrations of carbon dioxide and methane reach unprecedented levels, the Earth's climate system undergoes profound destabilization, resulting in rising average temperatures, ocean acidification, and accelerated glacial retreat.",
+      "The socioeconomic consequences are acute, threatening agricultural food security, displacing vulnerable coastal populations, and straining international economic systems.",
+      "Mitigating the worst impacts requires an aggressive global transition toward renewable energy sources, widespread adoption of sustainable circular economy practices, nature-based carbon sequestration, and binding international climate agreements."
+    ],
+    "model": "facebook/bart-large-cnn (Python Transformers Engine)",
+    "latency_seconds": 0.076
+  },
+  {
+    "test_case": "TC-03",
+    "topic": "Computer Networks",
+    "original_text": "Computer networks form the foundational digital backbone of contemporary global communication, enabling disparate computing devices to share computational resources, exchange packetized information, and access distributed services. Governed by layered architectural models such as the OSI seven-layer framework and the ubiquitous TCP/IP protocol suite, modern networks standardize everything from physical signaling and data link framing to end-to-end transport reliability and application data serialization. Routing algorithms, packet switching, and IP addressing schemes ensure that data packets navigate complex interconnected autonomous systems efficiently and reliably. In recent years, network infrastructure has evolved dramatically with the advent of Software-Defined Networking (SDN), Cloud computing, Network Functions Virtualization (NFV), and high-throughput wireless technologies like 5G and Wi-Fi 6. Concurrently, the proliferation of sophisticated cyber threats has elevated network security\u2014encompassing zero-trust architecture, robust public-key cryptography, firewalls, and intrusion prevention systems\u2014to a mission-critical imperative.",
+    "original_word_count": 136,
+    "generated_summary": "Computer networks form the foundational digital backbone of contemporary global communication, enabling disparate computing devices to share computational resources, exchange packetized information, and access distributed services. Governed by layered architectural models such as the OSI seven-layer framework and the ubiquitous TCP/IP protocol suite, modern networks standardize everything from physical signaling and data link framing to end-to-end transport reliability and application data serialization.",
+    "summary_word_count": 62,
+    "reduction_percentage": 54.4,
+    "key_points": [
+      "Computer networks form the foundational digital backbone of contemporary global communication, enabling disparate computing devices to share computational resources, exchange packetized information, and access distributed services.",
+      "Governed by layered architectural models such as the OSI seven-layer framework and the ubiquitous TCP/IP protocol suite, modern networks standardize everything from physical signaling and data link framing to end-to-end transport reliability and application data serialization.",
+      "In recent years, network infrastructure has evolved dramatically with the advent of Software-Defined Networking (SDN), Cloud computing, Network Functions Virtualization (NFV), and high-throughput wireless technologies like 5G and Wi-Fi 6.",
+      "Concurrently, the proliferation of sophisticated cyber threats has elevated network security\u2014encompassing zero-trust architecture, robust public-key cryptography, firewalls, and intrusion prevention systems\u2014to a mission-critical imperative."
+    ],
+    "model": "facebook/bart-large-cnn (Python Transformers Engine)",
+    "latency_seconds": 0.06
+  }
+]
