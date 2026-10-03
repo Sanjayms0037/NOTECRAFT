@@ -53,9 +53,10 @@ NoteCraft is composed of a high-performance **Python FastAPI backend** and a mod
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/sanjayajnas77/smart-study-notes-generator.git notecraft
+git clone https://github.com/Sanjayms0037/NOTECRAFT.git notecraft
 cd notecraft
 ```
+
 
 ### 2. Backend Setup (Python + FastAPI)
 
