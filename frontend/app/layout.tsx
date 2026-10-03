@@ -10,19 +10,34 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Smart Study Notes Generator | AI Text Summarization & Key Points",
+  title: "NoteCraft — Turn What You Read Into What You Remember",
   description:
-    "Turn long study material into concise summaries, key revision points, and measurable word reduction metrics powered by Python, FastAPI, and Hugging Face Transformers.",
+    "NoteCraft turns long text into concise summaries and clear key ideas in seconds. Powered by intelligent Python AI processing.",
   keywords: [
-    "AI Study Notes",
-    "Text Summarization",
-    "Generative AI",
-    "Python FastAPI",
-    "Hugging Face",
-    "College Mini Project",
-    "Student Productivity",
+    "NoteCraft",
+    "text summarization",
+    "AI summarizer",
+    "key ideas extraction",
+    "reading assistant",
+    "productivity tool",
+    "article summarizer",
   ],
-  authors: [{ name: "Smart Study Team" }],
+  authors: [{ name: "NoteCraft Team" }],
+  openGraph: {
+    title: "NoteCraft — Turn What You Read Into What You Remember",
+    description:
+      "NoteCraft turns long text into concise summaries and clear key ideas in seconds.",
+    url: "https://smart-study-notes-generator.vercel.app",
+    siteName: "NoteCraft",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NoteCraft — Turn What You Read Into What You Remember",
+    description:
+      "NoteCraft turns long text into concise summaries and clear key ideas in seconds.",
+  },
 };
 
 export default function RootLayout({
@@ -32,7 +47,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${plusJakarta.variable} font-sans scroll-smooth`}>
-      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900">
+      <body className="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900">
         {children}
       </body>
     </html>

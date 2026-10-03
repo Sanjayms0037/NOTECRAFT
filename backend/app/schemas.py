@@ -57,7 +57,7 @@ class SummarizeResponse(BaseModel):
 class HealthResponse(BaseModel):
     """Health check endpoint response."""
     status: str = Field("ok", description="Service health indicator.")
-    app: str = Field("Smart Study Notes Generator", description="Application identifier.")
-    version: str = Field("1.0.0", description="API version.")
+    app: str = Field("NoteCraft", description="Application identifier.")
+    version: str = Field("2.0.0", description="API version.")
     model: str = Field(..., description="Active AI model configured.")
     python_engine: str = Field(..., description="Python runtime version.")

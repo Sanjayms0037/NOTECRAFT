@@ -20,7 +20,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
-logger = logging.getLogger("smart-notes-api")
+logger = logging.getLogger("notecraft-api")
 
 app = FastAPI(
     title=APP_NAME,
@@ -56,7 +56,7 @@ def health_check():
 def root():
     """Welcome endpoint providing quick API overview."""
     return {
-        "message": "Welcome to Smart Study Notes Generator API",
+        "message": "Welcome to NoteCraft API",
         "health": "/health",
         "docs": "/docs",
         "summarize_endpoint": "/api/summarize"

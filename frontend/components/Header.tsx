@@ -1,99 +1,119 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { BookOpen, Terminal, ChevronRight } from "lucide-react";
+import React, { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Feather, ArrowRight, Menu, X } from "lucide-react";
 
 export default function Header() {
-  const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
+  const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    // Quick non-blocking ping to health check
-    fetch("/health")
-      .then((res) => (res.ok ? setBackendOnline(true) : setBackendOnline(false)))
-      .catch(() => setBackendOnline(false));
-  }, []);
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Summarize", href: "/summarize" },
+    { name: "How It Works", href: "/how-it-works" },
+    { name: "About", href: "/about" },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-md transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-md transition-all">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-            <BookOpen className="w-5 h-5" />
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 group cursor-pointer"
+          aria-label="NoteCraft Home"
+        >
+          <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center transition-transform duration-200 group-hover:scale-105 shadow-xs">
+            <Feather className="w-4 h-4 text-blue-400" />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-extrabold text-lg tracking-tight text-slate-900">
-                SMART STUDY
-              </span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-blue-50 text-blue-700 border border-blue-200/60">
-                GENERATIVE AI TOOL
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-              <Terminal className="w-3 h-3 text-emerald-600" />
-              <span>Python 3.12 + FastAPI + Hugging Face</span>
-            </div>
-          </div>
-        </div>
+          <span className="font-extrabold text-base tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+            NOTECRAFT
+          </span>
+        </Link>
 
-        {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-          <a
-            href="#generator"
-            className="hover:text-blue-600 transition-colors py-1 cursor-pointer"
-          >
-            Generator
-          </a>
-          <a
-            href="#how-it-works"
-            className="hover:text-blue-600 transition-colors py-1 cursor-pointer"
-          >
-            How It Works
-          </a>
-          <a
-            href="#architecture"
-            className="hover:text-blue-600 transition-colors py-1 cursor-pointer"
-          >
-            Architecture
-          </a>
-          <a
-            href="#about"
-            className="hover:text-blue-600 transition-colors py-1 cursor-pointer"
-          >
-            About
-          </a>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`transition-colors py-1 cursor-pointer relative ${
+                  isActive
+                    ? "text-slate-900 font-semibold"
+                    : "hover:text-slate-900 text-slate-600"
+                }`}
+              >
+                {link.name}
+                {isActive && (
+                  <span className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Action / CTA & Status */}
+        {/* Action Button & Mobile Toggle */}
         <div className="flex items-center gap-3">
-          {backendOnline !== null && (
-            <div
-              className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${
-                backendOnline
-                  ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                  : "bg-amber-50 text-amber-700 border-amber-200"
-              }`}
-              title={backendOnline ? "Python API connected" : "Connecting to Python API..."}
-            >
-              <span
-                className={`w-2 h-2 rounded-full ${
-                  backendOnline ? "bg-emerald-500 animate-pulse" : "bg-amber-500"
-                }`}
-              />
-              <span>{backendOnline ? "Python API Active" : "API Ready"}</span>
-            </div>
-          )}
-
-          <a
-            href="#generator"
-            className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-sm hover:shadow transition-all duration-200 cursor-pointer"
+          <Link
+            href="/summarize"
+            className="hidden sm:inline-flex items-center gap-2 bg-slate-900 hover:bg-blue-600 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow-xs hover:shadow transition-all duration-200 cursor-pointer active:scale-95"
           >
-            <span>Try It</span>
-            <ChevronRight className="w-4 h-4" />
-          </a>
+            <span>Summarize Text</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Animated Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-5 space-y-2 animate-in fade-in slide-in-from-top-2 duration-200">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-slate-100 text-slate-900 font-semibold"
+                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+          <div className="pt-2">
+            <Link
+              href="/summarize"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-center gap-2 w-full bg-slate-900 hover:bg-blue-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold shadow-xs transition-colors"
+            >
+              <span>Summarize Text</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

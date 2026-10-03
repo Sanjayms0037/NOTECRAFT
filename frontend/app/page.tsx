@@ -1,367 +1,225 @@
 "use client";
 
-import React, { useState } from "react";
-import confetti from "canvas-confetti";
+import React from "react";
+import Link from "next/link";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import StudyInput from "@/components/StudyInput";
-import SummaryCard from "@/components/SummaryCard";
-import KeyPointsCard from "@/components/KeyPointsCard";
-import StatsCards from "@/components/StatsCards";
-import LoadingState from "@/components/LoadingState";
-import ErrorState from "@/components/ErrorState";
 import Footer from "@/components/Footer";
-import { summarizeText, SummarizeResponse } from "@/lib/api";
+import TextTransformDemo from "@/components/TextTransformDemo";
 import {
+  Sparkles,
+  ArrowRight,
+  Zap,
+  Target,
+  BarChart2,
   BookOpen,
-  Terminal,
-  Lightbulb,
+  FileText,
+  Bookmark,
+  Users,
+  Code2,
   CheckCircle2,
 } from "lucide-react";
 
 export default function Home() {
-  const [inputText, setInputText] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [results, setResults] = useState<SummarizeResponse | null>(null);
+  const benefits = [
+    {
+      number: "01",
+      title: "Summarize faster",
+      description:
+        "Condense dense articles, long reports, and study material into readable essentials in seconds.",
+      icon: Zap,
+    },
+    {
+      number: "02",
+      title: "Find the important ideas",
+      description:
+        "Surface the most critical insights into clean, structured takeaways ready for quick review.",
+      icon: Target,
+    },
+    {
+      number: "03",
+      title: "See exactly how much you reduced",
+      description:
+        "Transparent original vs. summary word counts and verified reduction percentages on every run.",
+      icon: BarChart2,
+    },
+  ];
 
-  const handleGenerate = async () => {
-    if (!inputText.trim()) {
-      setError("Please paste or type study material before generating notes.");
-      return;
-    }
-
-    const words = inputText.trim().split(/\s+/).filter(Boolean);
-    if (words.length < 5) {
-      setError("Please provide at least 5 words for a meaningful summary.");
-      return;
-    }
-
-    setError(null);
-    setIsLoading(true);
-
-    try {
-      const data = await summarizeText(inputText);
-      setResults(data);
-
-      // Trigger celebratory confetti on success
-      try {
-        confetti({
-          particleCount: 70,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ["#2563eb", "#3b82f6", "#10b981", "#f59e0b"],
-        });
-      } catch {
-        // Confetti quiet fail
-      }
-    } catch (err: unknown) {
-      const message =
-        err instanceof Error
-          ? err.message
-          : "We couldn't generate your notes right now. Please try again.";
-      setError(message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleClear = () => {
-    setInputText("");
-    setResults(null);
-    setError(null);
-  };
+  const useCases = [
+    {
+      title: "Study Material",
+      desc: "Textbook chapters, lecture transcripts, and study guides.",
+      icon: BookOpen,
+    },
+    {
+      title: "Articles & Essays",
+      desc: "Long-form journalism, newsletters, and opinion pieces.",
+      icon: FileText,
+    },
+    {
+      title: "Research Papers",
+      desc: "Abstracts, academic publications, and literature reviews.",
+      icon: Bookmark,
+    },
+    {
+      title: "Technical Documentation",
+      desc: "System specs, developer manuals, and API guides.",
+      icon: Code2,
+    },
+    {
+      title: "Meeting Notes",
+      desc: "Transcripts, stakeholder summaries, and action logs.",
+      icon: Users,
+    },
+    {
+      title: "Long Explanations",
+      desc: "Lengthy email threads, customer briefs, and proposals.",
+      icon: CheckCircle2,
+    },
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-      {/* Header */}
+    <div className="min-h-screen flex flex-col bg-white text-slate-900">
       <Header />
 
       {/* Hero Section */}
-      <Hero />
-
-      {/* Main Study Workspace Section */}
-      <main id="generator" className="py-10 sm:py-14 flex-1">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-200/80 pb-4">
-            <div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                <span>AI Study Workspace</span>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
-                  Interactive
-                </span>
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500">
-                Input reference study paragraphs on the left; view generated notes and Python metrics on the right.
-              </p>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-slate-500 font-mono">
-              <Terminal className="w-3.5 h-3.5 text-blue-600" />
-              <span>FastAPI &bull; Transformers</span>
-            </div>
+      <section className="relative overflow-hidden pt-16 pb-12 md:pt-24 md:pb-20 bg-gradient-to-b from-slate-50/70 via-white to-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Subtle Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold mb-6 shadow-2xs">
+            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+            <span>AI-powered text summarization</span>
           </div>
 
-          {/* Two-Column Responsive Workspace */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-            {/* LEFT COLUMN: Study Material Input */}
-            <div className="flex flex-col min-h-[500px]">
-              <StudyInput
-                value={inputText}
-                onChange={(val) => {
-                  setInputText(val);
-                  if (error) setError(null);
-                }}
-                onGenerate={handleGenerate}
-                onClear={handleClear}
-                isLoading={isLoading}
-              />
-            </div>
+          {/* Hero Headline */}
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-950 tracking-tight leading-[1.08] mb-6">
+            Too much to read? <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-slate-900">
+              Make it make sense.
+            </span>
+          </h1>
 
-            {/* RIGHT COLUMN: Generated Notes / Loading / Initial State */}
-            <div className="flex flex-col min-h-[500px]">
-              {isLoading ? (
-                /* Dynamic Loading State */
-                <LoadingState />
-              ) : error ? (
-                /* User-Friendly Error State */
-                <ErrorState message={error} onRetry={handleGenerate} />
-              ) : results ? (
-                /* Generated Notes Results Dashboard */
-                <div className="space-y-5 animate-in fade-in duration-300">
-                  {/* Summary Card */}
-                  <SummaryCard summary={results.summary} />
+          {/* Supporting Copy */}
+          <p className="max-w-2xl mx-auto text-base sm:text-xl text-slate-600 leading-relaxed mb-8">
+            Turn long text into concise summaries and clear key ideas in seconds.
+          </p>
 
-                  {/* Key Points Card */}
-                  <KeyPointsCard keyPoints={results.key_points} />
+          {/* Action CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <Link
+              href="/summarize"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-slate-900 hover:bg-blue-600 active:scale-[0.98] text-white px-7 py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md shadow-slate-900/10 transition-all duration-200 cursor-pointer"
+            >
+              <span>Start Summarizing</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
 
-                  {/* Python Statistics & Metrics */}
-                  <StatsCards
-                    originalWords={results.original_word_count}
-                    summaryWords={results.summary_word_count}
-                    reductionPercentage={results.reduction_percentage}
-                    model={results.model}
-                    summaryText={results.summary}
-                    keyPoints={results.key_points}
-                  />
-                </div>
-              ) : (
-                /* Initial Idle State */
-                <div className="bg-white rounded-2xl border-2 border-dashed border-slate-200/90 p-8 sm:p-12 flex flex-col items-center justify-center text-center flex-1 transition-all">
-                  <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 shadow-xs">
-                    <BookOpen className="w-8 h-8" />
+            <Link
+              href="/how-it-works"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 cursor-pointer"
+            >
+              <span>See how it works</span>
+            </Link>
+          </div>
+
+          {/* Interactive Demonstration */}
+          <TextTransformDemo />
+        </div>
+      </section>
+
+      {/* Benefits Section: From reading to understanding */}
+      <section className="py-16 sm:py-24 bg-slate-50/50 border-t border-slate-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center mb-16">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">
+              From reading to understanding.
+            </h2>
+            <p className="text-sm sm:text-base text-slate-500 mt-3">
+              Designed around a single focus: giving you clarity without the cognitive fatigue.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {benefits.map((b) => {
+              const Icon = b.icon;
+              return (
+                <div
+                  key={b.number}
+                  className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300 relative group"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md">
+                      {b.number}
+                    </span>
+                    <Icon className="w-5 h-5 text-slate-400 group-hover:text-blue-600 transition-colors" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-800 mb-1.5">
-                    Your notes will appear here.
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">
+                    {b.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 max-w-sm mb-6 leading-relaxed">
-                    Paste your study paragraph on the left or select a sample topic, then click{" "}
-                    <strong>Generate Notes</strong> to run the Python AI pipeline.
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    {b.description}
                   </p>
-                  <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500">
-                    <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">
-                      &bull; Concise Summary
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">
-                      &bull; Actionable Key Points
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">
-                      &bull; Word Reduction %
-                    </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section: Built for anything you need to understand */}
+      <section className="py-16 sm:py-24 bg-white border-t border-slate-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center mb-16">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">
+              Built for anything you need to understand.
+            </h2>
+            <p className="text-sm sm:text-base text-slate-500 mt-3">
+              Whether you are scanning reference material or extracting key ideas from a long report.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {useCases.map((uc) => {
+              const Icon = uc.icon;
+              return (
+                <div
+                  key={uc.title}
+                  className="p-6 rounded-xl border border-slate-200/70 hover:border-slate-300 bg-white hover:bg-slate-50/50 transition-colors"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center mb-4">
+                    <Icon className="w-5 h-5" />
                   </div>
+                  <h3 className="font-bold text-slate-900 text-base mb-1.5">
+                    {uc.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                    {uc.desc}
+                  </p>
                 </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* HOW IT WORKS SECTION */}
-      <section id="how-it-works" className="py-14 sm:py-16 bg-white border-t border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-              Pipeline Architecture
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">
-              How the AI Note Generator Works
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-2">
-              From raw academic text to structured revision cards in 4 engineered stages.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {/* Step 1 */}
-            <div className="p-6 rounded-2xl bg-slate-50/70 border border-slate-100 relative">
-              <span className="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xs font-bold mb-4 shadow-sm">
-                1
-              </span>
-              <h3 className="font-bold text-slate-900 text-sm mb-1.5">
-                Input & Preprocessing
-              </h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Python cleans unicode whitespace, validates word count thresholds, and normalizes sentence boundaries.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="p-6 rounded-2xl bg-slate-50/70 border border-slate-100 relative">
-              <span className="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xs font-bold mb-4 shadow-sm">
-                2
-              </span>
-              <h3 className="font-bold text-slate-900 text-sm mb-1.5">
-                Transformer Inference
-              </h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Hugging Face BART large model analyzes cross-attention weights to condense paragraphs without losing core semantics.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="p-6 rounded-2xl bg-slate-50/70 border border-slate-100 relative">
-              <span className="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xs font-bold mb-4 shadow-sm">
-                3
-              </span>
-              <h3 className="font-bold text-slate-900 text-sm mb-1.5">
-                Key Points Extraction
-              </h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Salient concept extraction identifies the highest-yield factual takeaways and formats them into numbered revision points.
-              </p>
-            </div>
-
-            {/* Step 4 */}
-            <div className="p-6 rounded-2xl bg-slate-50/70 border border-slate-100 relative">
-              <span className="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xs font-bold mb-4 shadow-sm">
-                4
-              </span>
-              <h3 className="font-bold text-slate-900 text-sm mb-1.5">
-                Python Metric Engine
-              </h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Python computes original words, summary words, and exact reduction percentage with zero division protection.
-              </p>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* SYSTEM ARCHITECTURE SECTION */}
-      <section id="architecture" className="py-14 sm:py-16 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-950 px-3 py-1 rounded-full border border-blue-800">
-              System Design & Flow
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3">
-              Full-Stack System Architecture
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-2">
-              End-to-end communication from Next.js client to Python AI inference engine.
-            </p>
-          </div>
-
-          {/* Visual Architecture Flow Diagram */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-slate-950 border border-slate-800 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto shadow-2xl">
-            <div className="text-emerald-400 mb-2 font-semibold">{"// System Architecture Flow Diagram"}</div>
-            <pre className="text-slate-300">
-{`USER
- │
- ▼
-NEXT.JS FRONTEND (React + TypeScript + Tailwind CSS)
- │
- │  HTTP POST /api/summarize  { "text": "..." }
- ▼
-PYTHON FASTAPI BACKEND (main.py + Pydantic Schemas)
- │
- ├──▶ TEXT PREPROCESSING (text_utils.py: clean_text)
- │
- ├──▶ HUGGING FACE TRANSFORMERS (summarizer.py: pipeline)
- │     │
- │     ▼
- │    PRETRAINED AI MODEL (facebook/bart-large-cnn)
- │     │
- │     ▼
- │    SUMMARY + KEY POINTS GENERATION
- │
- ├──▶ PYTHON METRIC ENGINE (text_utils.py)
- │     ├── count_words(original_text)
- │     ├── count_words(summary_text)
- │     └── calculate_reduction(orig, summ)
- │
- ▼
-JSON RESPONSE { summary, key_points, word_counts, reduction_percentage, model }
- │
- ▼
-NEXT.JS FRONTEND (Results Dashboard)
- │
- ▼
-INTERACTIVE RESULTS DISPLAY (SummaryCard + KeyPointsCard + StatsCards)`}
-            </pre>
-          </div>
+      {/* Bottom CTA Banner */}
+      <section className="py-20 bg-slate-950 text-white relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
+            Turn what you read into what you remember.
+          </h2>
+          <p className="text-base text-slate-400 max-w-xl mx-auto mb-8 leading-relaxed">
+            Paste your text into NoteCraft and extract concise summaries and clear key ideas in seconds.
+          </p>
+          <Link
+            href="/summarize"
+            className="inline-flex items-center gap-2.5 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-blue-500/20 transition-all duration-200 cursor-pointer"
+          >
+            <span>Start Summarizing Now</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 
-      {/* ABOUT & VIVA SECTION */}
-      <section id="about" className="py-14 sm:py-16 bg-white border-t border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                Academic Demonstration
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3 mb-4">
-                Why Python as the AI & Backend Core?
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                Python is the industry standard for Artificial Intelligence, Natural Language Processing, and scientific computation. In this mini-project, Python is strictly responsible for:
-              </p>
-              <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Exposing high-performance asynchronous API endpoints via FastAPI.</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Running Hugging Face Transformers model inference.</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Computing word counts, text sanitization, and reduction percentages.</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Validating data payloads via Pydantic models with robust exception safety.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50 border border-blue-100 shadow-sm">
-              <h3 className="font-extrabold text-slate-900 text-base mb-3 flex items-center gap-2">
-                <Lightbulb className="w-4 h-4 text-amber-500" />
-                <span>Viva Examination Highlights</span>
-              </h3>
-              <div className="space-y-3 text-xs text-slate-600 leading-relaxed">
-                <div className="p-3 bg-white rounded-xl border border-slate-200/80">
-                  <strong className="text-slate-900 block mb-1">Pretrained Model Used:</strong>
-                  <code>facebook/bart-large-cnn</code> (Sequence-to-sequence bidirectional autoregressive transformer).
-                </div>
-                <div className="p-3 bg-white rounded-xl border border-slate-200/80">
-                  <strong className="text-slate-900 block mb-1">Reduction Metric Formula:</strong>
-                  <code>((original_words - summary_words) / original_words) * 100</code> rounded to 1 decimal place.
-                </div>
-                <div className="p-3 bg-white rounded-xl border border-slate-200/80">
-                  <strong className="text-slate-900 block mb-1">Architectural Separation:</strong>
-                  Next.js is strictly for UI/UX interaction; all generative AI and metric calculations reside in Python.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
       <Footer />
     </div>
   );

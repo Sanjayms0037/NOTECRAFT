@@ -42,3 +42,4 @@ desktop.ini
 # Temporary browser session logs and scratchpads
 browser/
 scratchpad*
+~$*
