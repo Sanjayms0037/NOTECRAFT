@@ -157,7 +157,7 @@ export default function SummarizePage() {
       `Summary:\n${results.summary}\n\n` +
       `Key Ideas:\n${results.key_points.map((p, i) => `${i + 1}. ${p}`).join("\n")}\n\n` +
       `Stats:\nOriginal: ${results.original_word_count} words | Summary: ${results.summary_word_count} words | Reduced: ${results.reduction_percentage}%\n\n` +
-      `---\nGenerated with NoteCraft (https://smart-study-notes-generator.vercel.app)\n`;
+      `---\nGenerated with NoteCraft (https://notecraft-beta.vercel.app)\n`;
 
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);

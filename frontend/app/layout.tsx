@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "NoteCraft — Turn What You Read Into What You Remember",
     description:
       "NoteCraft turns long text into concise summaries and clear key ideas in seconds.",
-    url: "https://smart-study-notes-generator.vercel.app",
+    url: "https://notecraft-beta.vercel.app",
     siteName: "NoteCraft",
     locale: "en_US",
     type: "website",
