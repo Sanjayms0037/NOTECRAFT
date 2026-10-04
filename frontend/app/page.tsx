@@ -106,19 +106,23 @@ export default function Home() {
             Turn long text into concise summaries and clear key ideas in seconds.
           </p>
 
-          {/* Action CTAs */}
+          {/* Action CTAs with Pop-Up Motion */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link
               href="/summarize"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-slate-900 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 active:scale-[0.98] text-white px-7 py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md shadow-slate-900/10 dark:shadow-blue-600/20 transition-all duration-200 cursor-pointer"
+              className="relative group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-slate-900 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md shadow-slate-900/10 dark:shadow-blue-600/20 hover:shadow-xl hover:shadow-blue-500/25 hover:scale-105 hover:-translate-y-1 active:scale-95 transition-all duration-300 cursor-pointer"
             >
+              {/* Pop-up Tag */}
+              <span className="absolute -top-3.5 right-3 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-500 dark:bg-blue-400 text-white shadow-xs animate-bounce group-hover:scale-110 transition-transform">
+                Instant AI
+              </span>
               <span>Start Summarizing</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
 
             <Link
               href="/how-it-works"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900/80 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-6 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900/80 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-6 py-3.5 rounded-xl font-semibold text-sm hover:scale-105 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 cursor-pointer"
             >
               <span>See how it works</span>
             </Link>
@@ -126,6 +130,7 @@ export default function Home() {
 
           {/* Interactive Demonstration with Floating Pop-Up Badges */}
           <div className="relative mt-8">
+
             {/* Pop-up Floating Badge 1 (Left) */}
             <div className="hidden lg:flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-white/95 dark:bg-slate-800/95 border border-slate-200/90 dark:border-slate-700/80 shadow-lg shadow-slate-200/50 dark:shadow-black/40 backdrop-blur-md absolute -top-4 -left-4 z-20 animate-float-slow">
               <span className="flex h-2 w-2 relative">
@@ -245,8 +250,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Floating Pop-Up Quick Link */}
+      <div className="fixed bottom-6 right-6 z-40 animate-pop-in">
+        <Link
+          href="/summarize"
+          className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-slate-900/95 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white shadow-xl shadow-slate-900/25 dark:shadow-blue-500/30 backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer border border-white/10"
+          aria-label="Quick launch Summarizer"
+        >
+          <Sparkles className="w-4 h-4 text-blue-300 dark:text-white animate-spin-slow" />
+          <span className="text-xs font-bold">Summarize Text</span>
+          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+        </Link>
+      </div>
+
       <Footer />
     </div>
   );
 }
+
 
